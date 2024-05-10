@@ -9,7 +9,6 @@ const red_limit = 12
 const green_limit = 13
 const blue_limit = 14
 
-
 fn assess_pull(pull: String) -> Bool {
     let pull_info = string.split(pull, " ")
     let assert Ok(count) = list.first(pull_info)
@@ -24,13 +23,10 @@ fn assess_pull(pull: String) -> Bool {
     }
 }
 
-
 fn assess_round(round: String) -> Bool {
-    io.debug(round)
     let pulls = string.split(round, ", ")
     list.any(pulls, assess_pull)
 }
-
 
 fn assess_game(sum: Int, game: List(String)) -> Int {
     let assert Ok(id) = list.first(game)
@@ -40,17 +36,16 @@ fn assess_game(sum: Int, game: List(String)) -> Int {
     |> result.map(string.split(_, on: "; "))
 
     case list.any(rounds, assess_round) {
-        True -> sum + id
-        False -> sum + 0
+        True -> sum + 0
+        False -> sum + id
     }
 }
 
 pub fn solve_part_one() {
     let assert Ok(input) = simplifile.read(from: "src/data/two.txt")
-    let games = string.split(input, "\n")
-    let game_split = list.map(games, string.split(_, ": "))
-    let cleaned_games = list.map(game_split, list.map(_, string.replace(_, each: "Game ", with: "")))
-    
-    list.fold(cleaned_games, 0, assess_game)
+    string.split(input, "\n")
+    |> list.map(_, string.split(_, ": "))
+    |> list.map(_, list.map(_, string.replace(_, each: "Game ", with: "")))
+    |> list.fold(_, 0, assess_game)
     |> io.debug(_)
 }
