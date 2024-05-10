@@ -49,3 +49,12 @@ pub fn solve_part_one() {
     |> list.fold(_, 0, assess_game)
     |> io.debug(_)
 }
+
+pub fn solve_part_two() {
+    let assert Ok(input) = simplifile.read(from: "src/data/two.txt")
+    string.split(input, "\n")
+    // |> list.map(_, string.split(_, ": "))
+    // |> list.map(_, list.map(_, string.replace(_, each: "Game ", with: "")))
+    // |> list.fold(_, 0, assess_game)
+    // |> io.debug(_)
+}

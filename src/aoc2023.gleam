@@ -7,5 +7,6 @@ pub fn main() {
     // one.solve_part_two()
 
     // Day 2
-    two.solve_part_one()
+    // two.solve_part_one()
+    two.solve_part_two()
 }
